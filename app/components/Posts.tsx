@@ -18,7 +18,9 @@ interface Props {
 }
 
 const Posts = async ({ orderBy }: Props) => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    cache: "no-store",
+  });
   const posts: Post[] = await res.json();
   const sortedPosts = sort(posts).asc(
     orderBy === "title" ? (post) => post.title : (post) => post.id
